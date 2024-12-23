@@ -23,7 +23,7 @@ function getAllTypeOrmModels() {
 export function dataSourceOptionsFactory(
   config: DatabaseConfig,
 ): DataSourceOptions {
-  const { host, port, user, password, database, connectionLimit } = config;
+  const { host, port, user, password, database, poolSize } = config;
   return {
     type: 'mysql',
     timezone: '+00:00',
@@ -36,7 +36,7 @@ export function dataSourceOptionsFactory(
     username: user,
     password,
     database,
-    poolSize: connectionLimit,
+    poolSize,
     entities: getAllTypeOrmModels(),
     namingStrategy: new SnakeNamingStrategy(),
     synchronize: false,
